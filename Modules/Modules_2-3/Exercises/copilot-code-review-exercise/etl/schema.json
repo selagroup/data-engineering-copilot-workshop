@@ -1,0 +1,10 @@
+{
+  "columns": [
+    "txn_id",
+    "txn_date",
+    "amount",
+    "fx_rate",
+    "country",
+    "amount_usd"
+  ]
+}

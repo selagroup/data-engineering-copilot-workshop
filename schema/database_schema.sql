@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS raw.customers (
     customer_name VARCHAR(255),
     email VARCHAR(255),
     country VARCHAR(100),
+    signup_date DATE,
+    is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -18,8 +20,12 @@ CREATE TABLE IF NOT EXISTS raw.products (
     product_id SERIAL PRIMARY KEY,
     product_name VARCHAR(255),
     category VARCHAR(100),
+    subcategory VARCHAR(100),
     price DECIMAL(10,2),
-    stock_quantity INTEGER
+    cost DECIMAL(10,2),
+    stock_quantity INTEGER,
+    supplier_id INTEGER,
+    is_discontinued BOOLEAN DEFAULT false
 );
 
 -- Orders Table
@@ -31,7 +37,7 @@ CREATE TABLE IF NOT EXISTS raw.orders (
     discount_amount DECIMAL(10,2) DEFAULT 0,
     status VARCHAR(50),
     payment_method VARCHAR(50),
-    shipping_address VARCHAR(255),
+    shipping_address TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -40,7 +46,7 @@ CREATE INDEX IF NOT EXISTS idx_orders_date ON raw.orders(order_date);
 
 -- Order Items Table
 CREATE TABLE IF NOT EXISTS raw.order_items (
-    order_item_id INTEGER PRIMARY KEY,
+    order_item_id SERIAL PRIMARY KEY,
     order_id INTEGER REFERENCES raw.orders(order_id),
     product_id INTEGER REFERENCES raw.products(product_id),
     quantity INTEGER,
