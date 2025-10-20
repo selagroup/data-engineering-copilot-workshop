@@ -15,8 +15,10 @@ Before the workshop, ensure you have the following installed and configured:
 
 ### 1. Visual Studio Code + GitHub Copilot
 - Install [Visual Studio Code](https://code.visualstudio.com/)
-- Install the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
-- Sign in with your GitHub account that has Copilot access
+- **GitHub Copilot License**: Ensure you have an active GitHub Copilot subscription (Individual, Business, or Enterprise) or access through an organization
+- Install the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) in VS Code
+- Install the [GitHub Copilot Chat extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) in VS Code
+- Sign in to VS Code with your GitHub account that has Copilot access
 
 ### 2. Git & GitHub CLI
 - Install [Git](https://git-scm.com/downloads)

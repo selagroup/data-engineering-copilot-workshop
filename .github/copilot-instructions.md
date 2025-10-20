@@ -1,13 +1,7 @@
-#copilot----
+<!-- #copilot----
 applyTo: '**'
 ---
 ## Project Overview & Architecture
-
-This project is a data engineering platform for processing and analyzing sales data. The architecture consists of several key components orchestrated with Docker:
-
-- **PostgreSQL (`postgres`):** The primary relational database. It contains a `raw` schema for ingested data and an `analytics` schema with views for reporting.
-- **Redis (`redis`):** Used for caching and temporary data storage.
-- **MinIO (`minio`):** An S3-compatible object storage service, likely used for storing raw data files before ingestion.
 
 The core logic is in the `src/` directory and follows an ETL (Extract, Transform, Load) pattern:
 - `src/data_pipeline/extractors.py`: Scripts to extract data from various sources.
@@ -40,4 +34,4 @@ The core logic is in the `src/` directory and follows an ETL (Extract, Transform
 - SQL queries can be templated using Jinja2. Templates are stored in `src/templates/sql_templates/`. This is useful for generating dynamic queries.
 
 ### Database Connections
-- All database connection logic should be handled by functions in `src/utils/db_connection.py`. Do not write raw connection strings in your code.
+- All database connection logic should be handled by functions in `src/utils/db_connection.py`. Do not write raw connection strings in your code. -->
