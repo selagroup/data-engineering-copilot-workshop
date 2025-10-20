@@ -15,10 +15,10 @@ This notebook (`demo_debugging.ipynb`) contains a deliberately broken data pipel
 
 ### Phase 1: Discovery
 Ask Copilot to review the code:
+- "Explain what this code is trying to do"
 - "Review this code for potential issues"
 - "What performance problems do you see?"
 - "Check this cell for bugs"
-- "Explain what this code is trying to do"
 
 ### Phase 2: Fix Issues
 Use Copilot to generate fixes:

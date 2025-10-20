@@ -1,7 +1,7 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-engine = create_engine('postgresql://dataeng:copilot123@localhost:5432/workshop_db')
+engine = create_engine('postgresql://postgressadmin:wf**F!$3dGdf14@copilot-workshop-db.postgres.database.azure.com:5432/workshop_db')
 
 try:
     # Quick test query

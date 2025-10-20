@@ -1,201 +1,165 @@
-# Data Engineering Copilot Workshop
+# Data Engineering with GitHub Copilot - Workshop
 
-A hands-on workshop for learning data engineering with GitHub Copilot, featuring SQL, Pandas, PySpark, and Apache Airflow.
+Welcome to the Data Engineering with GitHub Copilot workshop! This hands-on workshop teaches you how to leverage GitHub Copilot for data engineering tasks including SQL generation, data pipeline development, and debugging.
 
-## 🏗️ Architecture
+## Workshop Structure
 
-The project uses a containerized data engineering stack:
+This repository contains:
+- **Module 1**: SQL generation and basic data operations
+- **Modules 2-3**: Advanced data pipelines, debugging exercises, and PySpark demos
+- **Pre-configured Azure PostgreSQL database** with sample sales data
 
-- **PostgreSQL**: Primary relational database with `raw` and `analytics` schemas
-- **Redis**: Caching and temporary data storage
-- **MinIO**: S3-compatible object storage for raw data files
+## Prerequisites
 
-## 🚀 Getting Started
+Before the workshop, ensure you have the following installed and configured:
 
-### Prerequisites
+### 1. Visual Studio Code + GitHub Copilot
+- Install [Visual Studio Code](https://code.visualstudio.com/)
+- Install the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+- Sign in with your GitHub account that has Copilot access
 
-- Docker and Docker Compose
-- Python 3.8+
-- Git
+### 2. Git & GitHub CLI
+- Install [Git](https://git-scm.com/downloads)
+- Install [GitHub CLI](https://cli.github.com/) (optional but recommended)
 
-### Initial Setup
+### 3. Python 3.11
+- **Windows**: Download and install [Python 3.11](https://www.python.org/downloads/) (make sure to check "Add Python to PATH" during installation)
+- **macOS**: Install via Homebrew: `brew install python@3.11`
+- **Linux**: Install via package manager: `sudo apt-get install python3.11 python3.11-venv`
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd data-engineering-copilot-workshop
-   ```
+### 4. Python 3.11 Virtual Environment
 
-2. **Start Docker services**
-   ```bash
-   docker-compose up -d
-   ```
+**Windows:**
+```bash
+# Clone the repository
+git clone <repository-url>
+cd data-engineering-copilot-workshop
 
-3. **Create virtual environment and install dependencies**
-   ```bash
-   python -m venv venv
-   # On Windows
-   venv\Scripts\activate
-   # On macOS/Linux
-   source venv/bin/activate
-   
-   pip install -r requirements.txt
-   ```
+# Create virtual environment
+python -m venv venv
 
-4. **Initialize the database**
-   ```bash
-   python setup/fix_db.py
-   ```
-   
-   This script will:
-   - Generate fresh mock data
-   - Drop and recreate all tables with correct schema
-   - Load data from CSV files
-   - Create analytics views
-   - Reset sequence counters
+# Activate virtual environment
+venv\Scripts\activate
 
-5. **Verify the setup**
-   ```bash
-   python verify_setup.py
-   ```
-   
-   This will check:
-   - Database connectivity
-   - Schema and table structure
-   - Data availability
-   - Analytics views
-   - Sample queries
-
-### Database Access
-
-- **Host**: localhost
-- **Port**: 5432
-- **Database**: workshop_db
-- **Username**: dataeng
-- **Password**: copilot123
-
-Connection string:
-```
-postgresql://dataeng:copilot123@localhost:5432/workshop_db
+# Install dependencies
+pip install -r requirements.txt
 ```
 
-## 📊 Database Schema
+**macOS/Linux:**
+```bash
+# Clone the repository
+git clone <repository-url>
+cd data-engineering-copilot-workshop
 
-### Raw Schema (`raw`)
+# Create virtual environment
+python3.11 -m venv venv
 
-- **customers**: Customer information (1,000 records)
-- **products**: Product catalog (200 records)
-- **orders**: Order transactions (5,000 records)
-- **order_items**: Individual items per order (~15,000 records)
+# Activate virtual environment
+source venv/bin/activate
 
-### Analytics Schema (`analytics`)
+# Install dependencies
+pip install -r requirements.txt
+```
 
-Views for reporting:
-- **customer_summary**: Customer lifetime value and metrics
-- **product_performance**: Product sales analytics
-- **monthly_sales**: Monthly aggregated sales data
+### 5. PySpark Setup
 
-See `schema/database_schema.sql` for complete schema definition.
+PySpark requires Java 8 or 11.
 
-## 🎓 Workshop Exercises
+**Windows:**
+1. Download and install [Java JDK 11](https://adoptium.net/)
+2. Set `JAVA_HOME` environment variable:
+   - Search for "Environment Variables" in Windows
+   - Add `JAVA_HOME` pointing to your JDK installation (e.g., `C:\Program Files\Eclipse Adoptium\jdk-11.0.XX`)
+   - Add `%JAVA_HOME%\bin` to your PATH
 
-### Exercise 1: SQL Generation (`exercises/01_sql_exercise.py`)
-Learn to write effective comments that generate SQL queries with Copilot.
+**macOS:**
+```bash
+# Install Java using Homebrew
+brew install openjdk@11
 
-### Exercise 2: Pandas Operations (`exercises/02_pandas_exercise.py`)
-Data manipulation and transformation using Pandas.
+# Add to PATH (add to ~/.zshrc or ~/.bash_profile)
+export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+export PATH="$JAVA_HOME/bin:$PATH"
+```
 
-### Exercise 3: PySpark Transformations (`exercises/03_pyspark_exercise.py`)
-Big data processing with PySpark.
+**Linux:**
+```bash
+# Install Java
+sudo apt-get update
+sudo apt-get install openjdk-11-jdk
 
-### Exercise 4: Airflow DAGs (`exercises/04_airflow_exercise.py`)
-Workflow orchestration and scheduling.
+# Set JAVA_HOME (add to ~/.bashrc)
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH="$JAVA_HOME/bin:$PATH"
+```
 
-## 🔧 Troubleshooting
+### 6. Verify Installation
 
-### Database Issues
-
-If you encounter database schema errors:
+Run the following to verify your setup:
 
 ```bash
-python setup/fix_db.py
+# Activate virtual environment first
+# Windows: venv\Scripts\activate
+# macOS/Linux: source venv/bin/activate
+
+# Verify Python
+python --version  # Should show Python 3.11.x
+
+# Verify Java
+java -version  # Should show Java 11
+
+# Test database connection
+python quick_db_test.py
 ```
 
-This will completely reset the database with the correct schema.
+Expected output:
+```
+🔗 Connecting to database...
+Database Test Results:
+   customers  orders  total_revenue
+0       1000    5000     12345678.90
 
-### Reset Everything
-
-To start fresh:
-
-```bash
-# Stop and remove containers
-docker-compose down -v
-
-# Restart services
-docker-compose up -d
-
-# Reinitialize database
-python setup/fix_db.py
+[OK] Database connection successful!
 ```
 
-## 📁 Project Structure
+## Database Connection
 
-```
-├── docker-compose.yml          # Container orchestration
-├── requirements.txt            # Python dependencies
-├── schema/                     # Database schema definitions
-│   ├── database_schema.sql     # Table definitions (source of truth)
-│   ├── create_views.py         # Analytics view creation
-│   └── schema_context.md       # Schema documentation
-├── setup/                      # Setup and initialization scripts
-│   ├── init_db.sql            # Initial DB setup (run by Docker)
-│   ├── fix_db.py              # Database reset and reload script
-│   ├── generate_mock_data.py  # Mock data generation
-│   └── sample_data/           # CSV data files
-├── src/                        # Core application code
-│   ├── data_pipeline/         # ETL pipeline components
-│   │   ├── extractors.py      # Data extraction
-│   │   ├── transformers.py    # Data transformation
-│   │   └── loaders.py         # Data loading
-│   ├── templates/             # SQL and other templates
-│   └── utils/                 # Utility functions
-│       ├── db_connection.py   # Database connection helpers
-│       └── data_quality.py    # Data quality checks
-├── exercises/                  # Workshop exercises
-├── notebooks/                  # Jupyter notebooks for demos
-└── tests/                      # Test suite
-```
+The workshop uses a pre-configured Azure PostgreSQL database. The connection string is already set in the code:
+- **Host**: `copilot-workshop-db.postgres.database.azure.com`
+- **Database**: `workshop_db`
+- **Schema**: `raw` (for raw data), `analytics` (for views)
 
-## 🔑 Key Conventions
+All exercises are ready to run - no additional database setup required!
 
-1. **Database Schema**: Always refer to `schema/database_schema.sql` as the source of truth
-2. **SQL Queries**: Use the `raw` schema for raw data, `analytics` schema for reporting
-3. **Database Connections**: Use functions in `src/utils/db_connection.py`
-4. **Templated SQL**: Store SQL templates in `src/templates/sql_templates/`
+## Getting Started
 
-## 📝 Development Workflow
+1. Open the repository in VS Code
+2. Activate your virtual environment
+3. Start with `Modules/Module_1/Exercises/01_sql_exercise_azure.py`
+4. Follow along with the instructor
 
-1. Start with exercises in order (01 → 04)
-2. Use GitHub Copilot to generate code from comments
-3. Test your solutions by running the exercise files
-4. Check the `solutions/` directory if you get stuck
-5. Experiment with notebooks for interactive exploration
+## Troubleshooting
 
-## 🤝 Contributing
+**"Module not found" error:**
+- Make sure your virtual environment is activated
+- Run `pip install -r requirements.txt` again
 
-When making changes:
-1. Keep `schema/database_schema.sql` as the authoritative schema
-2. Update `setup/fix_db.py` if schema changes are needed
-3. Regenerate mock data if adding new tables or columns
-4. Test setup process from scratch before committing
+**Java-related errors:**
+- Verify `JAVA_HOME` is set correctly
+- Restart your terminal/IDE after setting environment variables
 
-## 📚 Additional Resources
+**Database connection failed:**
+- Check your internet connection
+- Verify the connection using `python quick_db_test.py`
 
-- [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
-- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
-- [Apache Spark Documentation](https://spark.apache.org/docs/latest/)
-- [Apache Airflow Documentation](https://airflow.apache.org/docs/)
+## Workshop Resources
 
-## 📄 License
+- Database schema: `schema/database_schema.sql`
+- Copilot instructions: `.github/copilot-instructions.md`
+- Sample data: `setup/sample_data`
 
-This project is for educational purposes.
+## Support
+
+If you encounter issues during setup, please reach out to the workshop facilitators before the session begins.
+
+Happy coding with Copilot! 🚀
