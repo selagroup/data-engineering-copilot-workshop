@@ -247,12 +247,29 @@ Find error handling in #githubRepo microsoft/vscode
 - Creates PRs automatically
 - Navigate: `github.com/copilot/agents`
 
+**GitHub Copilot Spaces:**
+- Collaborative AI workspace on GitHub.com
+- Navigate: `github.com/copilot` or click Copilot icon in top bar
+- Share context across team conversations
+- Attach repositories, files, and issues
+- Persistent chat sessions with history
+- Use `@` mentions for repositories and team members
+- Access MCP skills directly in the web interface
+
+**Using Copilot Spaces:**
+```
+# Example prompts in Copilot Spaces:
+Analyze security vulnerabilities in @owner/repo
+Compare architecture between @repo1 and @repo2
+Summarize changes in pull request #123
+```
+
 ---
 
 ### 💻 GitHub Copilot Command Line
 
 **New GitHub Copilot CLI:**
-- Replaces old `gh copilot` extension
+- Install npm install -g @github/copilot on your linux vm
 - Natural language to shell commands
 - Available via GitHub CLI
 
@@ -331,8 +348,8 @@ applyTo: "**/*.py"
    ```
 
 **Smart Actions for Debugging:**
-- Right-click error in editor → Copilot → Fix
-- Use `/fix` in inline chat on problematic code
+- Always use Ask mode first
+- When Looping through debugging the same problem - try asking copilot to "let's take a step back"
 - Ask Copilot to add logging/debugging statements
 
 **Debug View Integration:**
