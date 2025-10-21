@@ -212,13 +212,14 @@ Find error handling in #githubRepo microsoft/vscode
 
 **Request Code Review:**
 1. Select code or open file
-2. Chat: "Review this code for security issues"
-3. Or: Right-click → Copilot → Review
+2. Press `Ctrl+Shift+P`
+3. Type "Chat: Review" and press Enter
+4. Or: Right-click → Copilot → Review
 
 **Review Types:**
 - Security vulnerabilities
 - Performance issues
-- Code smells
+- Potentials Errors
 - Best practices violations
 
 **Using Custom Instructions for Reviews:**
