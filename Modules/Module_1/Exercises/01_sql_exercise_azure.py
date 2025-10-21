@@ -23,10 +23,6 @@ try:
     with engine.connect():
         print("✅ Connection successful!\n")
 except Exception as e:
-    print(f"❌ Connection failed: {e}")
-    print("\nMake sure to:")
-    print("1. Run 'docker-compose up -d' if using Docker")
-    print("2. Or set DB_CONNECTION_STRING in .env for Azure")
     exit(1)
 
 # EXERCISE 1.1: Basic SQL Generation Using only comments
