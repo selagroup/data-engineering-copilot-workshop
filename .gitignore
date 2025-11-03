@@ -28,7 +28,6 @@ ENV/
 env/
 
 # Testing
-.pytest_cache/
 .coverage
 htmlcov/
 .tox/
@@ -52,3 +51,4 @@ derby.log
 # *.parquet
 # *.json
 
+.github/instructions/environment.instructions.md

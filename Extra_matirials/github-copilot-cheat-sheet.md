@@ -318,7 +318,6 @@ applyTo: "**/*.py"
 - Use type hints for all functions
 - Follow PEP 8 style guide
 - Prefer dataclasses over dictionaries
-- Use pytest for testing
 ```
 
 ---

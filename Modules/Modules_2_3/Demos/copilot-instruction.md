@@ -11,7 +11,7 @@ This is a data engineering workshop focused on foundational data engineering con
 - **Languages**: Python 3.11+, SQL, PySpark
 - **Frameworks**: PySpark (local mode), pandas, psycopg2
 - **Storage**: Local file system (CSV, Parquet files), PostgreSQL database
-- **Tools**: Jupyter notebooks, pytest
+- **Tools**: Jupyter notebooks
 
 ## Workshop Environment
 ⚠️ **This is a LOCAL workshop environment for learning purposes:**
@@ -455,7 +455,6 @@ class PipelineConfig:
 
 Example:
 ```python
-import pytest
 import pandas as pd
 from your_module import validate_orders
 
